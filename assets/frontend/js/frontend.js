@@ -28,4 +28,4 @@
      * Although scripts in the WordPress core, Plugins and Themes may be
      * practising this, we should strive to set a better example in our own work.
      */
-})( jQuery );
+})(jQuery);
