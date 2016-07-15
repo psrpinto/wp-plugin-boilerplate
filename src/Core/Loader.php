@@ -5,29 +5,25 @@ namespace WpPluginBoilerplate\Core;
 /**
  * Register all actions and filters for the plugin.
  *
- * Maintain a list of all hooks that are registered throughout
- * the plugin, and register them with the WordPress API. Call the
- * run function to execute the list of actions and filters.
+ * Maintain a list of all hooks that are registered through the plugin, and
+ * registers them with the WordPress API when the `run` function is called.
  */
 class Loader
 {
     /**
-     * The array of actions registered with WordPress.
+     * The array of actions to be registered with WordPress.
      *
-     * @var array The actions registered with WordPress to fire when the plugin loads.
+     * @var array
      */
     private $actions;
 
     /**
-     * The array of filters registered with WordPress.
+     * The array of filters to be registered with WordPress.
      *
-     * @var array The filters registered with WordPress to fire when the plugin loads.
+     * @var array
      */
     private $filters;
 
-    /**
-     * Initialize the collections used to maintain the actions and filters.
-     */
     public function __construct()
     {
         $this->actions = [];
@@ -35,63 +31,37 @@ class Loader
     }
 
     /**
-     * Add a new action to the collection to be registered with WordPress.
+     * Add a new action to be registered with WordPress.
      *
      * @param string $hook          The name of the WordPress action that is being registered.
      * @param object $component     A reference to the instance of the object on which the action is defined.
      * @param string $callback      The name of the function definition on the $component.
-     * @param int    $priority      Optional. he priority at which the function should be fired. Default is 10.
-     * @param int    $accepted_args Optional. The number of arguments that should be passed to the $callback. Default is 1.
+     * @param int    $priority      The priority at which the function should be fired.
+     * @param int    $accepted_args The number of arguments that should be passed to the $callback.
      */
     public function add_action($hook, $component, $callback, $priority = 10, $accepted_args = 1)
     {
-        $this->actions = $this->add($this->actions, $hook, $component, $callback, $priority, $accepted_args);
+        $this->add('action', $hook, $component, $callback, $priority, $accepted_args);
     }
 
     /**
-     * Add a new filter to the collection to be registered with WordPress.
+     * Add a new filter to be registered with WordPress.
      *
-     * @param string $hook          The name of the WordPress filter that is being registered.
-     * @param object $component     A reference to the instance of the object on which the filter is defined.
-     * @param string $callback      The name of the function definition on the $component.
-     * @param int    $priority      Optional. he priority at which the function should be fired. Default is 10.
-     * @param int    $accepted_args Optional. The number of arguments that should be passed to the $callback. Default is 1
-     */
-    public function add_filter($hook, $component, $callback, $priority = 10, $accepted_args = 1)
-    {
-        $this->filters = $this->add($this->filters, $hook, $component, $callback, $priority, $accepted_args);
-    }
-
-    /**
-     * A utility function that is used to register the actions and hooks into a single
-     * collection.
-     *
-     * @param array  $hooks         The collection of hooks that is being registered (that is, actions or filters).
      * @param string $hook          The name of the WordPress filter that is being registered.
      * @param object $component     A reference to the instance of the object on which the filter is defined.
      * @param string $callback      The name of the function definition on the $component.
      * @param int    $priority      The priority at which the function should be fired.
      * @param int    $accepted_args The number of arguments that should be passed to the $callback.
-     *
-     * @return array The collection of actions and filters registered with WordPress.
      */
-    private function add($hooks, $hook, $component, $callback, $priority, $accepted_args)
+    public function add_filter($hook, $component, $callback, $priority = 10, $accepted_args = 1)
     {
-        $hooks[] = [
-            'hook'          => $hook,
-            'component'     => $component,
-            'callback'      => $callback,
-            'priority'      => $priority,
-            'accepted_args' => $accepted_args,
-        ];
-
-        return $hooks;
+        $this->add('filter', $hook, $component, $callback, $priority, $accepted_args);
     }
 
     /**
      * Register the filters and actions with WordPress.
      */
-    public function run()
+    public function register_hooks()
     {
         foreach ($this->filters as $hook) {
             add_filter($hook['hook'], [$hook['component'], $hook['callback']], $hook['priority'], $hook['accepted_args']);
@@ -99,6 +69,26 @@ class Loader
 
         foreach ($this->actions as $hook) {
             add_action($hook['hook'], [$hook['component'], $hook['callback']], $hook['priority'], $hook['accepted_args']);
+        }
+    }
+
+    private function add($type, $hook, $component, $callback, $priority, $accepted_args)
+    {
+        $hook = [
+            'hook'          => $hook,
+            'component'     => $component,
+            'callback'      => $callback,
+            'priority'      => $priority,
+            'accepted_args' => $accepted_args,
+        ];
+
+        switch ($type) {
+            case 'action':
+                $this->actions[] = $hook;
+                break;
+            case 'filter':
+                $this->filters[] = $hook;
+                break;
         }
     }
 }

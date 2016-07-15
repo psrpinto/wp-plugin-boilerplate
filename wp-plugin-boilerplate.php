@@ -1,10 +1,5 @@
 <?php
 
-namespace WpPluginBoilerplate;
-
-use WpPluginBoilerplate\Core\Activator;
-use WpPluginBoilerplate\Core\Plugin;
-
 /*
  * The plugin bootstrap file.
  *
@@ -26,42 +21,13 @@ use WpPluginBoilerplate\Core\Plugin;
  * Domain Path:       /languages
  */
 
-// If this file is called directly, abort.
 if (!defined('WPINC')) {
-    die;
+    die; // Forbid direct execution
 }
 
-spl_autoload_register(function ($class) {
-    if (strpos($class, $root_namespace = 'WpPluginBoilerplate') === false) {
-        return;
-    }
+require_once __DIR__.'/autoload.php';
 
-    $path = plugin_dir_path(__FILE__).'src';
-    foreach (explode('\\', $class) as $token) {
-        if ($token === $root_namespace) {
-            continue;
-        }
+register_activation_hook(__FILE__, ['WpPluginBoilerplate\Core\Lifecycle', 'activate']);
+register_deactivation_hook(__FILE__, ['WpPluginBoilerplate\Core\Lifecycle', 'deactivate']);
 
-        $path .= DIRECTORY_SEPARATOR.$token;
-    }
-
-    require_once $path.'.php';
-});
-
-// Plugin activation
-register_activation_hook(__FILE__, function () {
-    Activator::activate();
-});
-
-// Plugin deactivation
-register_deactivation_hook(__FILE__, function () {
-    Activator::deactivate();
-});
-
-/*
- * Begins execution of the plugin.
- *
- * Since everything within the plugin is registered via hooks, then kicking off
- * the plugin from this point in the file does not affect the page life cycle.
- */
-(new Plugin())->run();
+(new WpPluginBoilerplate\Core\Plugin('wp-plugin-boilerplate', '1.0.0'))->run();
