@@ -5,8 +5,8 @@
  *
  * This file is read by WordPress to generate the plugin information in the plugin
  * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
+ * registers the activation, deactivation and uninstall hooks and finally runs
+ * the plugin.
  *
  * @wordpress-plugin
  * Plugin Name:       WP Plugin Boilerplate
@@ -31,3 +31,19 @@ register_activation_hook(__FILE__, ['WpPluginBoilerplate\Core\Lifecycle', 'activ
 register_deactivation_hook(__FILE__, ['WpPluginBoilerplate\Core\Lifecycle', 'deactivate']);
 
 (new WpPluginBoilerplate\Core\Plugin('wp-plugin-boilerplate', '1.0.0'))->run();
+
+if (class_exists('WP_CLI')) {
+    // Register WP-CLI commands
+    foreach (glob(__DIR__.'/src/Command/*Command.php') as $path) {
+        $class = '\\WpPluginBoilerplate\\'.str_replace([__DIR__.'/src/', '.php', '/'], ['', '', '\\'], $path);
+
+        // Read the @slug annotation from the PHPDoc of the class
+        $reflection = new ReflectionClass(new $class());
+        preg_match_all('/@slug (.*?)\n/s', $reflection->getDocComment(), $annotations);
+        $slug = array_pop($annotations[1]);
+
+        if (!empty($slug)) {
+            WP_CLI::add_command($slug, $class);
+        }
+    }
+}
