@@ -1,0 +1,23 @@
+{
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.8.*",
+        "johnpbloch/wordpress": "^4.5"
+    },
+    "extra": {
+        "wordpress-install-dir": "vendor/johnpbloch/wordpress"
+    },
+    "scripts": {
+        "setup-tests": [
+            "bash tests/lib/setup.sh"
+        ],
+        "post-update-cmd": [
+            "@setup-tests"
+        ],
+        "post-install-cmd": [
+            "@setup-tests"
+        ]
+    }
+}

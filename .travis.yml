@@ -1,0 +1,16 @@
+language: php
+
+branches:
+  only:
+    - master
+
+php:
+  - 5.5
+  - 7.0
+
+env:
+  - WP_MULTISITE=0
+  - WP_MULTISITE=1
+
+install: composer install
+script: phpunit
