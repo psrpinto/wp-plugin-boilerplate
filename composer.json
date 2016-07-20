@@ -1,8 +1,24 @@
 {
+    "name": "regularjack/wp-plugin-boilerplate",
+    "type": "wordpress-plugin",
+    "description": "An object-oriented boilerplate for developing high-quality, testable WordPress plugins",
+    "homepage": "https://github.com/regularjack/wp-plugin-boilerplate",
+    "license": "GPL-2.0+",
+    "authors": [
+        {
+            "name": "Paulo Rodrigues Pinto",
+            "email": "regularjack@gmail.com"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/regularjack/wp-plugin-boilerplate/contributors"
+        }
+    ],
     "require": {
         "php": ">=5.4"
     },
     "require-dev": {
+        "php": ">=5.5",
         "phpunit/phpunit": "4.8.*",
         "johnpbloch/wordpress": "^4.5"
     },
