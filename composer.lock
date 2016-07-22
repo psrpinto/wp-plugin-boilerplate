@@ -4,9 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cb4120efc53572e3687237d828beeb4b",
-    "content-hash": "1662998c503c13d7b5ca2fb7098d7578",
-    "packages": [],
+    "hash": "2674fb8da8937b5d2de5b126c549e336",
+    "content-hash": "0d4b7fefc78567c13bd12c611e299d16",
+    "packages": [
+        {
+            "name": "regularjack/wp-plugin-boilerplate-installer",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "/Users/regularjack/Code/regularjack/wp-plugin-boilerplate-installer",
+                "reference": "27997287f152d86942f7af53fd81420b4067c6bd",
+                "shasum": null
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "conflict": {
+                "composer/installers": "<1.0.6"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Rj\\Composer\\Plugin"
+            },
+            "autoload": {
+                "psr-0": {
+                    "Rj\\Composer\\": "src/"
+                }
+            },
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Paulo Rodrigues Pinto",
+                    "email": "regularjack@gmail.com"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/regularjack/wp-plugin-boilerplate-installer/contributors"
+                }
+            ],
+            "description": "Composer installer for https://github.com/regularjack/wp-plugin-boilerplate",
+            "homepage": "https://github.com/regularjack/wp-plugin-boilerplate-installer",
+            "keywords": [
+                "wordpress"
+            ]
+        }
+    ],
     "packages-dev": [
         {
             "name": "doctrine/instantiator",
@@ -600,16 +647,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.26",
+            "version": "4.8.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "fc1d8cd5b5de11625979125c5639347896ac2c74"
+                "reference": "c062dddcb68e44b563f66ee319ddae2b5a322a90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/fc1d8cd5b5de11625979125c5639347896ac2c74",
-                "reference": "fc1d8cd5b5de11625979125c5639347896ac2c74",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c062dddcb68e44b563f66ee319ddae2b5a322a90",
+                "reference": "c062dddcb68e44b563f66ee319ddae2b5a322a90",
                 "shasum": ""
             },
             "require": {
@@ -668,7 +715,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-05-17 03:09:28"
+            "time": "2016-07-21 06:48:14"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -1199,11 +1246,15 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "regularjack/wp-plugin-boilerplate-installer": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": ">=5.4"
     },
-    "platform-dev": []
+    "platform-dev": {
+        "php": ">=5.5"
+    }
 }

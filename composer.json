@@ -14,12 +14,19 @@
             "homepage": "https://github.com/regularjack/wp-plugin-boilerplate/contributors"
         }
     ],
+    "repositories": [
+        {
+            "type": "path",
+            "url": "/Users/regularjack/Code/regularjack/wp-plugin-boilerplate-installer"
+        }
+    ],
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "regularjack/wp-plugin-boilerplate-installer": "@dev"
     },
     "require-dev": {
         "php": ">=5.5",
-        "phpunit/phpunit": "4.8.*",
+        "phpunit/phpunit": "^4.8",
         "johnpbloch/wordpress": "^4.5"
     },
     "extra": {
