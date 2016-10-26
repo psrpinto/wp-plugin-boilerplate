@@ -6,4 +6,4 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 
 require_once __DIR__.'/autoload.php';
 
-WpPluginBoilerplate\Core\Lifecycle::uninstall();
+WpPluginBoilerplate\Lifecycle::uninstall();

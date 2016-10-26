@@ -27,13 +27,13 @@ if (!defined('WPINC')) {
 
 require_once __DIR__.'/autoload.php';
 
-register_activation_hook(__FILE__, array('WpPluginBoilerplate\Core\Lifecycle', 'activate'));
-register_deactivation_hook(__FILE__, array('WpPluginBoilerplate\Core\Lifecycle', 'deactivate'));
+register_activation_hook(__FILE__, array('WpPluginBoilerplate\Lifecycle', 'activate'));
+register_deactivation_hook(__FILE__, array('WpPluginBoilerplate\Lifecycle', 'deactivate'));
 
-$WpPluginBoilerplateId = 'wp-plugin-boilerplate';
-$WpPluginBoilerplateVersion = '1.0.0';
+$wpPluginBoilerplateId = 'wp-plugin-boilerplate';
+$wpPluginBoilerplateVersion = '1.0.0';
 
-$WpPluginBoilerplatePlugin = new WpPluginBoilerplate\Core\Plugin($WpPluginBoilerplateId, $WpPluginBoilerplateVersion);
+$WpPluginBoilerplatePlugin = new WpPluginBoilerplate\Core\Plugin($wpPluginBoilerplateId, $wpPluginBoilerplateVersion);
 $WpPluginBoilerplatePlugin->run();
 
 if (class_exists('WP_CLI')) {

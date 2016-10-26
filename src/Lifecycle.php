@@ -1,6 +1,6 @@
 <?php
 
-namespace WpPluginBoilerplate\Core;
+namespace WpPluginBoilerplate;
 
 /**
  * Code to run during the plugin's activation, deactivation or uninstallation.
