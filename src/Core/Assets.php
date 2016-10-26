@@ -6,14 +6,16 @@ class Assets
 {
     private $plugin_id;
     private $plugin_version;
+    private $base_dir;
 
     private $styles = array();
     private $scripts = array();
 
-    public function __construct($plugin_id, $plugin_version, $loader, $is_admin)
+    public function __construct($plugin_id, $plugin_version, $loader, $is_admin, $base_dir = 'static')
     {
         $this->plugin_id = $plugin_id;
         $this->plugin_version = $plugin_version;
+        $this->base_dir = plugin_dir_url(realpath(__DIR__.'/../')).$base_dir;
 
         if ($is_admin) {
             $loader->add_action('admin_enqueue_scripts', $this, 'enqueue_styles');
@@ -49,7 +51,7 @@ class Assets
 
     private function url($path)
     {
-        return plugin_dir_url(realpath(__DIR__.'/../')).'assets/'.$path;
+        return $this->base_dir.'/'.$path;
     }
 
     public function enqueue_styles()
