@@ -1,9 +1,9 @@
 # WP Plugin Boilerplate
 An object-oriented boilerplate for developing high-quality, testable WordPress plugins.
 
-[![Build Status](https://travis-ci.org/regularjack/wp-plugin-boilerplate.svg?branch=master)](https://travis-ci.org/regularjack/wp-plugin-boilerplate)
-
 *Requires PHP 5.3+*
+
+**This is an experiment. You probably don't want to use it yet.**
 
 ## Features
 
@@ -30,10 +30,7 @@ Install directly into the plugins folder of a WordPress installation and then re
     find . -type f -exec sed -i 's/wp-plugin-boilerplate/wp-foo/g' {} +
     rm -rf README.md .git
 
-- Create /tests/lib/wp-tests-config.php
-- Travis variables
-
-# Ack
+## Ack
 
 - [DevinVinson/WordPress-Plugin-Boilerplate](https://github.com/DevinVinson/WordPress-Plugin-Boilerplate)
 - WP-CLI
