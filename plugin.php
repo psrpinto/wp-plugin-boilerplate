@@ -27,15 +27,19 @@ if (!defined('WPINC')) {
 
 require_once __DIR__.'/autoload.php';
 
-register_activation_hook(__FILE__, ['WpPluginBoilerplate\Core\Lifecycle', 'activate']);
-register_deactivation_hook(__FILE__, ['WpPluginBoilerplate\Core\Lifecycle', 'deactivate']);
+register_activation_hook(__FILE__, array('WpPluginBoilerplate\Core\Lifecycle', 'activate'));
+register_deactivation_hook(__FILE__, array('WpPluginBoilerplate\Core\Lifecycle', 'deactivate'));
 
-(new WpPluginBoilerplate\Core\Plugin('wp-plugin-boilerplate', '1.0.0'))->run();
+$WpPluginBoilerplateId = 'wp-plugin-boilerplate';
+$WpPluginBoilerplateVersion = '1.0.0';
+
+$WpPluginBoilerplatePlugin = new WpPluginBoilerplate\Core\Plugin($WpPluginBoilerplateId, $WpPluginBoilerplateVersion);
+$WpPluginBoilerplatePlugin->run();
 
 if (class_exists('WP_CLI')) {
     // Register WP-CLI commands
     foreach (glob(__DIR__.'/src/Command/*Command.php') as $path) {
-        $class = '\\WpPluginBoilerplate\\'.str_replace([__DIR__.'/src/', '.php', '/'], ['', '', '\\'], $path);
+        $class = '\\WpPluginBoilerplate\\'.str_replace(array(__DIR__.'/src/', '.php', '/'), array('', '', '\\'), $path);
 
         // Read the @slug annotation from the PHPDoc of the class
         $reflection = new ReflectionClass(new $class());

@@ -7,8 +7,8 @@ class Assets
     private $plugin_id;
     private $plugin_version;
 
-    private $styles = [];
-    private $scripts = [];
+    private $styles = array();
+    private $scripts = array();
 
     public function __construct($plugin_id, $plugin_version, $loader, $is_admin)
     {
@@ -24,22 +24,22 @@ class Assets
         }
     }
 
-    public function add_style($path, $deps = [], $media = 'all')
+    public function add_style($path, $deps = array(), $media = 'all')
     {
-        $this->styles[] = [
+        $this->styles[] = array(
             'path'  => $path,
             'deps'  => $deps,
             'media' => $media,
-        ];
+        );
     }
 
-    public function add_script($path, $deps = ['jquery'], $in_footer = true)
+    public function add_script($path, $deps = array('jquery'), $in_footer = true)
     {
-        $this->scripts[] = [
+        $this->scripts[] = array(
             'path'      => $path,
             'deps'      => $deps,
             'in_footer' => $in_footer,
-        ];
+        );
     }
 
     private function id($path)

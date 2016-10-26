@@ -3,7 +3,7 @@ An object-oriented boilerplate for developing high-quality, testable WordPress p
 
 [![Build Status](https://travis-ci.org/regularjack/wp-plugin-boilerplate.svg?branch=master)](https://travis-ci.org/regularjack/wp-plugin-boilerplate)
 
-*Requires PHP 5.4+ (5.5+ for running tests)*
+*Requires PHP 5.3+*
 
 ## Features
 
