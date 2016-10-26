@@ -11,7 +11,5 @@ class Admin
     {
         $assets->add_style('admin/css/admin.css');
         $assets->add_script('admin/js/admin.js');
-
-        new Settings($loader, $templating);
     }
 }
