@@ -35,6 +35,12 @@
         ],
         "post-install-cmd": [
             "@setup-tests"
+        ],
+        "post-root-package-install": [
+            "mv languages/wp-plugin-boilerplate.pot languages/wp-foo.pot",
+            "find . -type f -exec sed -i 's/WP Plugin Boilerplate/WP Foo/g' {} +",
+            "find . -type f -exec sed -i 's/WpPluginBoilerplate/WpFoo/g' {} +",
+            "find . -type f -exec sed -i 's/wp-plugin-boilerplate/wp-foo/g' {} +"
         ]
     }
 }
