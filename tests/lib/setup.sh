@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -ex
+set -e
 
 WP_CORE_DIR=vendor/johnpbloch/wordpress
 WP_TESTS_DIR=tests/lib
@@ -49,8 +49,8 @@ install_db() {
   fi
 
   # Create database if it doesn't exist
-  if ! mysql -e "use $DB_NAME"$AUTH$EXTRA; then
-    mysqladmin create $DB_NAME$AUTH$EXTRA
+  if ! ( mysqlshow $DB_NAME$AUTH$EXTRA > /dev/null 2>&1 ); then
+    mysqladmin create $DB_NAME$AUTH$EXTRA 2>&1 | sed "/\[Warning\] Using a password/d"
   fi
 }
 

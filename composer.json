@@ -20,14 +20,15 @@
     "require-dev": {
         "php": ">=5.3",
         "phpunit/phpunit": "^4.8",
-        "johnpbloch/wordpress": "^4.5"
+        "johnpbloch/wordpress": "^4.5",
+        "vlucas/phpdotenv": "^2.4"
     },
     "extra": {
         "wordpress-install-dir": "vendor/johnpbloch/wordpress"
     },
     "scripts": {
         "setup-tests": [
-            "bash tests/lib/setup.sh"
+            "tests/lib/setup.sh"
         ],
         "post-update-cmd": [
             "@setup-tests"

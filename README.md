@@ -1,7 +1,8 @@
 # WP Plugin Boilerplate
 An object-oriented boilerplate for developing high-quality, testable WordPress plugins.
 
-*Requires PHP 5.3+*
+[![Build Status](https://img.shields.io/travis/regularjack/wp-plugin-boilerplate.svg?branch=master&style=flat-square)](https://travis-ci.org/regularjack/wp-plugin-boilerplate)
+![PHP 5.3+](https://img.shields.io/badge/PHP-5.3%2B-green.svg?style=flat-square)
 
 **This is an experiment. You probably don't want to use it yet.**
 

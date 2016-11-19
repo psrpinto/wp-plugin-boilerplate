@@ -8,11 +8,16 @@ php:
   - 5.3
   - 5.6
   - 7.0
-  - 7.1
 
 env:
-  - WP_MULTISITE=0
-  - WP_MULTISITE=1
+  global:
+    - DB_HOST=localhost
+    - DB_NAME=wordpress_tests
+    - DB_USER=travis
+  matrix:
+    - WP_MULTISITE=0
+    # - WP_MULTISITE=1
 
+before_install: phpenv config-rm xdebug.ini
 install: composer install
 script: vendor/bin/phpunit

@@ -1,5 +1,23 @@
 <?php
 
+// This configuration file will be used by the copy of WordPress being tested.
+// wordpress/wp-config.php will be ignored.
+//
+// !!!!! WARNING !!!!!
+// These tests will DROP ALL TABLES in the database with the prefix named below.
+// DO NOT use a production database or one that is shared with something else.
+
+require_once __DIR__.'/../../vendor/autoload.php';
+
+$dotenv = new \Dotenv\Dotenv(__DIR__.'/../', getenv('TRAVIS') ? '.env.travis' : '.env');
+$dotenv->overload();
+$dotenv->required(array('DB_HOST', 'DB_NAME', 'DB_USER'));
+
+define('DB_HOST', getenv('DB_HOST'));
+define('DB_NAME', getenv('DB_NAME'));
+define('DB_USER', getenv('DB_USER'));
+define('DB_PASSWORD', getenv('DB_PASSWORD'));
+
 /* Path to the WordPress codebase you'd like to test. Add a forward slash in the end. */
 define('ABSPATH', 'vendor/johnpbloch/wordpress/');
 
@@ -14,35 +32,8 @@ define('ABSPATH', 'vendor/johnpbloch/wordpress/');
 // Test with WordPress debug mode (default).
 define('WP_DEBUG', true);
 
-// This configuration file will be used by the copy of WordPress being tested.
-// wordpress/wp-config.php will be ignored.
-
-// !!!!! WARNING !!!!!
-// These tests will DROP ALL TABLES in the database with the prefix named below.
-// DO NOT use a production database or one that is shared with something else.
-
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
-
-if (file_exists(__DIR__.'/../wp-tests-config-local.php')) {
-    $locals = include __DIR__.'/../wp-tests-config-local.php';
-}
-
-if (getenv('DB_HOST')) {
-    define('DB_HOST', getenv('DB_HOST'));
-} elseif (isset($locals['DB_HOST'])) {
-    define('DB_HOST', $locals['DB_HOST']);
-} else {
-    define('DB_HOST', 'localhost');
-}
-
-define('DB_NAME', getenv('DB_NAME') ? getenv('DB_NAME') : @$locals['DB_NAME']);
-define('DB_USER', getenv('DB_USER') ? getenv('DB_USER') : @$locals['DB_USER']);
-define('DB_PASSWORD', getenv('DB_PASSWORD') ? getenv('DB_PASSWORD') : @$locals['DB_PASSWORD']);
-
-if (!DB_NAME || !DB_USER || !DB_PASSWORD) {
-    die('You must define your test DB_NAME, DB_USER and DB_PASSWORD in a tests/wp-tests-config-local.php file or as environment variables');
-}
 
 $table_prefix = 'wptests_';   // Only numbers, letters, and underscores
 
